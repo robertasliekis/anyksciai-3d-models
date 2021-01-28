@@ -45,7 +45,6 @@ div {
           align-items: center;
   width: 100%;
   height: 100vh;
-  overflow: hidden;
 }
 
 .models-display-wrapper {
@@ -161,6 +160,7 @@ div {
 
 .models-carousel-wrapper .description p {
   font-size: 24px;
+  text-align: justify;
 }
 
 .models-carousel-wrapper .description p:nth-child(2) {
@@ -480,5 +480,116 @@ div {
   left: 50%;
   width: calc(100% + 110px);
   height: calc(100% + 110px);
+}
+
+@media only screen and (max-width: 1024px) {
+  .models-carousel-wrapper .description {
+    width: 100%;
+    padding: 0 50px;
+  }
+  .models-carousel-wrapper .carousel-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .models-carousel-wrapper .carousel-container .carousel-wrapper {
+    height: 460px;
+  }
+  .models-carousel-wrapper .carousel-container .carousel-wrapper .carousel-overflow-wrapper .models-display-container .model-image .enlarge-icon {
+    width: 60px;
+    height: 60px;
+  }
+  .models-carousel-wrapper .carousel-container .carousel-wrapper .buttons-container .btn-previous {
+    -webkit-transform: translateX(-120%);
+            transform: translateX(-120%);
+  }
+  .models-carousel-wrapper .carousel-container .carousel-wrapper .buttons-container .btn-next {
+    -webkit-transform: translateX(120%);
+            transform: translateX(120%);
+  }
+  .buttons-container .btn {
+    height: 50px;
+    width: 35px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .models-carousel-wrapper {
+    overflow: hidden;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .models-carousel-wrapper {
+    overflow: hidden;
+    padding-top: 15px;
+  }
+  .models-carousel-wrapper .description {
+    padding: 0 15px;
+    margin-bottom: 10px;
+  }
+  .models-carousel-wrapper .description .title {
+    margin-bottom: 20px;
+  }
+  .models-carousel-wrapper .description .title .logo {
+    height: 80px;
+  }
+  .models-carousel-wrapper .description .title .text {
+    font-size: 35px;
+    line-height: 40px;
+  }
+  .models-carousel-wrapper .description p {
+    font-size: 20px;
+  }
+  .models-carousel-wrapper .description p:nth-child(2) {
+    margin-bottom: 10px;
+  }
+  .models-carousel-wrapper .description p:nth-child(3),
+  .models-carousel-wrapper .description p:nth-child(4) {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+  .models-carousel-wrapper .carousel-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    height: 300px;
+  }
+  .models-carousel-wrapper .carousel-container .carousel-wrapper .carousel-overflow-wrapper .models-display-container .model-image .enlarge-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .models-carousel-wrapper .carousel-container .carousel-wrapper .buttons-container .btn-previous {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+  .models-carousel-wrapper .carousel-container .carousel-wrapper .buttons-container .btn-next {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+  .buttons-container .btn {
+    height: 45px;
+    width: 30px;
+  }
 }
 /*# sourceMappingURL=App.css.map */

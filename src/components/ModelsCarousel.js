@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import modelLinks from "../data/modelLinks";
+import getWindowDimensions from "./getWindowDimensions";
 
 import { connect } from "react-redux";
 import { setModelOpen } from "../actions";
@@ -7,10 +8,41 @@ import { setModelOpen } from "../actions";
 function ModelsCarousel(props) {
   const [activeModel, setActiveModel] = useState(1);
   const [carouselTransition, setCarouselTransition] = useState(false);
+  const windowDimensions = getWindowDimensions();
+
+  console.log(windowDimensions);
+
   const modelsCount = modelLinks.length;
-  const imageMargin = 10;
-  const imageSize = 215;
-  const imageSizeEnlarged = 460;
+  let imageMargin = 10;
+  let imageSize = 215;
+  let imageSizeEnlarged = 460;
+  let carouselWidth;
+  let carouselCenter;
+
+  const setImageSize = () => {
+    if (windowDimensions.width <= 1024 && windowDimensions.width > 768) {
+      imageMargin = 5;
+      imageSize = 150;
+      imageSizeEnlarged = 250;
+    } else if (windowDimensions.width <= 768 && windowDimensions.width > 450) {
+      imageMargin = 5;
+      imageSize = 110;
+      imageSizeEnlarged = 160;
+    } else if (windowDimensions.width <= 450) {
+      imageMargin = 5;
+      imageSize = 90;
+      imageSizeEnlarged = 130;
+    }
+    if (windowDimensions.width > 450) {
+      carouselWidth = imageSize * 5 + imageMargin * 10 + imageSizeEnlarged - imageSize;
+      carouselCenter = -activeModel * (imageSize + imageMargin * 2) - imageSize - imageMargin * 2;
+    } else if (windowDimensions.width <= 450) {
+      carouselWidth = imageSize * 3 + imageMargin * 6 + imageSizeEnlarged - imageSize;
+      carouselCenter = (-activeModel - 1) * (imageSize + imageMargin * 2) - imageSize - imageMargin * 2;
+    }
+  };
+
+  setImageSize();
 
   const modelsDisplayMiddle = modelLinks.map((model, index) => index);
   const modelsDisplayStart = modelsDisplayMiddle.filter((model, index) => index > modelsCount - 5);
@@ -29,7 +61,6 @@ function ModelsCarousel(props) {
     }, 150);
     return () => {
       clearTimeout(carouselTimer);
-      console.log("clear");
     };
   }, [activeModel]);
 
@@ -57,8 +88,7 @@ function ModelsCarousel(props) {
   };
 
   return (
-    <div className="models-carousel-wrapper">
-      {console.log(props.modelIndex)}
+    <div className="models-carousel-wrapper" key={windowDimensions.width}>
       <div className="description">
         <div className="title">
           <div className="logo"></div>
@@ -77,12 +107,12 @@ function ModelsCarousel(props) {
           <div className="side-image"></div>
           <div className="side-image"></div>
         </div>
-        <div className="carousel-wrapper" style={{ width: `${imageSize * 5 + imageMargin * 10 + imageSizeEnlarged - imageSize}px` }}>
+        <div className="carousel-wrapper" style={{ width: `${carouselWidth}px` }}>
           <div className="carousel-overflow-wrapper">
             <div
               className="models-display-container"
               style={{
-                left: `${-activeModel * (imageSize + imageMargin * 2) - imageSize - imageMargin * 2}px`,
+                left: `${carouselCenter}px`,
                 transition: !carouselTransition ? "0.2s all ease" : "none"
               }}
             >
