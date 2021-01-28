@@ -91,7 +91,7 @@ function ModelsCarousel(props) {
                   className="model-image"
                   key={index}
                   style={{
-                    backgroundImage: `url("images/${modelIndex + 1}.jpg")`,
+                    backgroundImage: `url("images/image${modelIndex + 1}.jpg")`,
                     margin: `0px ${imageMargin}px`,
                     height: index === activeModel + 3 ? `${imageSizeEnlarged}px` : `${imageSize}px`,
                     width: index === activeModel + 3 ? `${imageSizeEnlarged}px` : `${imageSize}px`,
