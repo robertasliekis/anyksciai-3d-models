@@ -247,7 +247,6 @@ div {
     }
     .description-container {
       @include displayFlex();
-
       justify-content: flex-start;
       height: 220px;
       width: 400px;
@@ -256,7 +255,7 @@ div {
       right: 20px;
       padding: 20px 0;
       color: rgb(179, 179, 179);
-
+      z-index: 3;
       p {
         white-space: pre-line;
         font-family: "Alegreya SC", serif;
@@ -328,6 +327,43 @@ div {
     }
   }
 
+  .models-display-wrapper {
+    .models-display-container {
+      .btn-close {
+        top: 20px;
+        right: 20px;
+      }
+      .buttons-container {
+        width: calc(100% - 40px);
+      }
+      .description-container {
+        right: 10px;
+        width: 100%;
+        width: 200px;
+        p {
+          white-space: pre-line;
+          font-family: "Alegreya SC", serif;
+        }
+        .model-number {
+          font-size: 25px;
+          width: 30px;
+          text-align: center;
+        }
+        .text-container {
+          @include displayFlexColumn();
+          align-items: flex-start;
+          border-left: 1px solid grey;
+          height: 100%;
+          padding-left: 20px;
+          margin-left: 20px;
+          p {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+
   .buttons-container {
     .btn {
       height: 50px;
@@ -336,14 +372,13 @@ div {
   }
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 768px) {
   .models-carousel-wrapper {
     overflow: hidden;
   }
 }
 @media only screen and (max-width: 450px) {
   .models-carousel-wrapper {
-    overflow: hidden;
     padding-top: 15px;
     .description {
       padding: 0 15px;
@@ -392,6 +427,40 @@ div {
           }
           .btn-next {
             transform: translateX(100%);
+          }
+        }
+      }
+    }
+  }
+
+  .models-display-wrapper {
+    .models-display-container {
+      .btn-close {
+        top: 10px;
+        right: 10px;
+      }
+      .buttons-container {
+        width: 100%;
+      }
+      .description-container {
+        justify-content: flex-end;
+        right: 0px;
+        width: 100%;
+        padding-left: 10px;
+        height: 180px;
+        .model-number {
+          font-size: 20px;
+          width: 20px;
+        }
+        .text-container {
+          @include displayFlexColumn();
+          align-items: flex-start;
+          border-left: 1px solid grey;
+          height: 100%;
+          padding: 0 10px;
+          margin-left: 10px;
+          p {
+            font-size: 16px;
           }
         }
       }
