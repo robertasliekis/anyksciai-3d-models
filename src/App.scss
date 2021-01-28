@@ -1,3 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alegreya+SC&display=swap");
+
+@font-face {
+  font-family: "YonkyBlack";
+  src: url("./fonts/Yonky-Black-demoFFP.ttf");
+}
+
 body,
 html {
   padding: 0;
@@ -6,58 +14,283 @@ html {
   height: 100%;
 }
 
+p {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+@mixin displayFlex {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+}
+
+@mixin displayFlexBetween {
+  @include displayFlex();
+  justify-content: space-between;
+}
+
+@mixin displayFlexColumn {
+  @include displayFlex();
+  flex-direction: column;
+}
+
+@mixin positionAbsoluteCenter {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+
 .website-wrapper {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include displayFlex();
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background: linear-gradient(0deg, rgb(75, 75, 75) 0%, rgb(170, 170, 170) 100%);
+}
 
-  .buttons-container {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
+.models-display-wrapper {
+  @include displayFlexColumn();
+  @include positionAbsoluteCenter();
+  overflow: hidden;
+}
+
+.models-carousel-wrapper {
+  @include displayFlexColumn();
+  width: 100%;
+  height: 100%;
+  background-color: #c1bbb8;
+  justify-content: flex-start;
+  padding-top: 50px;
+  z-index: 1;
+  .description {
+    @include displayFlexColumn();
+    align-items: flex-start;
+    width: 1400px;
+    margin-bottom: 40px;
+    user-select: none;
+    .title {
+      @include displayFlex();
+      border-bottom: 3px solid #40362d;
+      margin-bottom: 30px;
+      .logo {
+        width: 150px;
+        height: 100px;
+        margin-bottom: -3px;
+        margin-left: -2px;
+        background-position: left;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url("./images/Logo.png");
+      }
+      .text {
+        font-size: 50px;
+        font-family: "YonkyBlack";
+      }
+    }
+    p {
+      font-size: 24px;
+    }
+    p:nth-child(2) {
+      margin-bottom: 30px;
+    }
+    p:nth-child(3),
+    p:nth-child(4) {
+      font-size: 20px;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+  }
+  .carousel-container {
+    @include displayFlex();
     width: 100%;
-    height: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 2;
-    .btn {
-      width: 60px;
-      height: 60px;
+    height: 500px;
+    position: relative;
+    background-color: #574e47;
+    .side-images-container {
+      @include displayFlexBetween();
+      width: 100%;
+      height: 100%;
+      .side-image {
+        width: 300px;
+        height: 70%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        align-self: flex-end;
+      }
+      .side-image:nth-child(1) {
+        background-image: url("./images/attribute left.png");
+        background-position: bottom left;
+      }
+      .side-image:nth-child(2) {
+        background-image: url("./images/attribute right.png");
+        background-position: bottom right;
+      }
+    }
+    .carousel-wrapper {
+      @include positionAbsoluteCenter();
+      height: 460px;
+      //  border: 1px solid red;
+      .carousel-overflow-wrapper {
+        @include positionAbsoluteCenter();
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        .models-display-container {
+          @include displayFlex();
+          justify-content: flex-start;
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          transition: 0.3s all ease;
+          .model-image {
+            @include displayFlex();
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            .enlarge-icon {
+              width: 100px;
+              height: 100px;
+              background-position: center;
+              background-size: contain;
+              background-repeat: no-repeat;
+              background-image: url("./images/Enlarge.png");
+            }
+          }
+        }
+      }
+      .buttons-container {
+        .btn {
+          margin: 0;
+        }
+        .btn-previous {
+          transform: translateX(-150%);
+        }
+        .btn-next {
+          transform: translateX(150%);
+        }
+      }
+    }
+  }
+}
+
+.buttons-container {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+  .btn {
+    width: 60px;
+    height: 60px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0 10px;
+    cursor: pointer;
+    opacity: 0.7;
+  }
+  .btn-previous {
+    background-image: url("./images/move previous.png");
+  }
+  .btn-next {
+    background-image: url("./images/move next.png");
+  }
+}
+
+.models-display-wrapper {
+  background: linear-gradient(0deg, rgb(75, 75, 75) 0%, rgb(170, 170, 170) 100%);
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  .models-display-container {
+    width: 100%;
+    height: 100%;
+    .btn-close {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      width: 40px;
+      height: 40px;
       background-position: center;
       background-repeat: no-repeat;
       background-size: contain;
-      margin: 0 10px;
+      background-image: url("./images/Exit.png");
+      z-index: 3;
     }
-    .btn-previous {
-      background-image: url("./images/previous.png");
+    .buttons-container {
+      width: calc(100% - 80px);
+      .btn:nth-child(1) {
+        background-position: left;
+      }
+      .btn:nth-child(2) {
+        background-position: right;
+      }
     }
-    .btn-next {
-      background-image: url("./images/next.png");
-    }
-  }
-  .overflow-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 1;
-    .model-iframe {
-      position: absolute;
-      transform: translate(-50%, -50%);
-      top: 50%;
-      left: 50%;
-      width: calc(100% + 110px);
-      height: calc(100% + 110px);
+    .description-container {
+      @include displayFlex();
 
-      // display: none;
-      // border: 1px solid red;
+      justify-content: flex-start;
+      height: 220px;
+      width: 400px;
+      position: absolute;
+      bottom: 0;
+      right: 20px;
+      padding: 20px 0;
+      color: rgb(179, 179, 179);
+
+      p {
+        white-space: pre-line;
+        font-family: "Alegreya SC", serif;
+      }
+      .model-number {
+        font-size: 25px;
+        width: 30px;
+        text-align: center;
+      }
+      .text-container {
+        @include displayFlexColumn();
+        align-items: flex-start;
+        border-left: 1px solid grey;
+        height: 100%;
+        padding-left: 20px;
+        margin-left: 20px;
+        p {
+          font-size: 20px;
+        }
+      }
+    }
+    .overflow-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      .model-iframe {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        width: calc(100% + 110px);
+        height: calc(100% + 110px);
+      }
     }
   }
 }
