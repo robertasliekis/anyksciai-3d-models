@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/anyksciai-3d-models/static/css/main.e2249abb.chunk.css",
-    "main.js": "/anyksciai-3d-models/static/js/main.db52bc60.chunk.js",
-    "main.js.map": "/anyksciai-3d-models/static/js/main.db52bc60.chunk.js.map",
+    "main.js": "/anyksciai-3d-models/static/js/main.6b912fd1.chunk.js",
+    "main.js.map": "/anyksciai-3d-models/static/js/main.6b912fd1.chunk.js.map",
     "runtime-main.js": "/anyksciai-3d-models/static/js/runtime-main.5ef1a33c.js",
     "runtime-main.js.map": "/anyksciai-3d-models/static/js/runtime-main.5ef1a33c.js.map",
     "static/js/2.1b5f9b52.chunk.js": "/anyksciai-3d-models/static/js/2.1b5f9b52.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.5ef1a33c.js",
     "static/js/2.1b5f9b52.chunk.js",
     "static/css/main.e2249abb.chunk.css",
-    "static/js/main.db52bc60.chunk.js"
+    "static/js/main.6b912fd1.chunk.js"
   ]
 }
