@@ -579,6 +579,10 @@ div {
 }
 
 @media only screen and (max-width: 450px) {
+  .website-wrapper {
+    height: calc(100vh - 56px);
+    overflow: hidden;
+  }
   .models-carousel-wrapper {
     padding-top: 15px;
   }
