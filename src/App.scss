@@ -23,6 +23,9 @@ p {
   font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
+  span {
+    white-space: nowrap;
+  }
 }
 
 div {
@@ -108,18 +111,20 @@ div {
       .text {
         font-size: 50px;
         font-family: "YonkyBlack";
+        color: #40362d;
       }
     }
     p {
-      font-size: 24px;
+      font-size: 23px;
       text-align: justify;
+      white-space: pre-line;
     }
-    p:nth-child(2) {
+    p:nth-child(3) {
       margin-bottom: 30px;
     }
-    p:nth-child(3),
-    p:nth-child(4) {
-      font-size: 20px;
+    p:nth-child(4),
+    p:nth-child(5) {
+      font-size: 19px;
       font-style: italic;
       margin-bottom: 20px;
     }
@@ -153,7 +158,6 @@ div {
     .carousel-wrapper {
       @include positionAbsoluteCenter();
       height: 460px;
-      //  border: 1px solid red;
       .carousel-overflow-wrapper {
         @include positionAbsoluteCenter();
         width: 100%;
@@ -306,6 +310,17 @@ div {
   }
 }
 
+.mobile-text {
+  @include displayFlexColumn();
+  align-items: flex-start;
+  display: none;
+  font-style: italic;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 25px;
+  padding-bottom: 0;
+}
+
 @media only screen and (max-width: 1024px) {
   .models-carousel-wrapper {
     .description {
@@ -396,37 +411,42 @@ div {
   }
 
   .models-carousel-wrapper {
-    padding-top: 15px;
+    padding-top: 0;
     .description {
-      padding: 0 15px;
-      margin-bottom: 10px;
+      padding: 40px;
+      padding-bottom: 20px;
+      margin-bottom: 0;
       .title {
         margin-bottom: 20px;
         .logo {
           height: 80px;
         }
         .text {
-          font-size: 35px;
-          line-height: 40px;
+          margin-left: 10px;
+          font-size: 30px;
+          line-height: 35px;
         }
       }
       p {
-        font-size: 16px;
+        font-size: 14px;
       }
-      p:nth-child(2) {
-        margin-bottom: 10px;
+      p:nth-child(3) {
+        margin: 10px 0;
+        margin-bottom: 0;
       }
-      p:nth-child(3),
-      p:nth-child(4) {
+      p:nth-child(4),
+      p:nth-child(5) {
         font-size: 13px;
         margin-bottom: 10px;
+      }
+      .desktop-text {
+        display: none;
       }
     }
     .carousel-container {
       @include displayFlex();
-      height: 300px;
+      height: 250px;
       .carousel-wrapper {
-        //border: 1px solid red;
         .carousel-overflow-wrapper {
           .models-display-container {
             .model-image {
@@ -437,16 +457,18 @@ div {
             }
           }
         }
-
         .buttons-container {
           .btn-previous {
-            transform: translateX(-100%);
+            transform: translateX(-120%);
           }
           .btn-next {
-            transform: translateX(100%);
+            transform: translateX(120%);
           }
         }
       }
+    }
+    .mobile-text {
+      display: flex;
     }
   }
 
@@ -491,5 +513,40 @@ div {
       height: 45px;
       width: 30px;
     }
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .models-carousel-wrapper {
+    .carousel-container {
+      .carousel-wrapper {
+        .buttons-container {
+          .btn-previous {
+            transform: translateX(-110%);
+          }
+          .btn-next {
+            transform: translateX(110%);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .models-carousel-wrapper {
+    padding-top: 0;
+    .description {
+      padding: 10px;
+      padding-bottom: 10px;
+      margin-bottom: 0;
+    }
+    .carousel-container {
+      height: 200px;
+    }
+  }
+
+  .mobile-text {
+    padding: 10px;
   }
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import modelLinks from "../data/modelLinks";
 import getWindowDimensions from "./getWindowDimensions";
+import getImageSize from "./getImageSize";
 
 import { connect } from "react-redux";
 import { setModelOpen } from "../actions";
@@ -9,45 +10,20 @@ function ModelsCarousel(props) {
   const [activeModel, setActiveModel] = useState(1);
   const [carouselTransition, setCarouselTransition] = useState(false);
   const windowDimensions = getWindowDimensions();
-
-  console.log(windowDimensions);
-
   const modelsCount = modelLinks.length;
-  let imageMargin = 10;
-  let imageSize = 215;
-  let imageSizeEnlarged = 460;
-  let carouselWidth;
-  let carouselCenter;
 
-  const setImageSize = () => {
-    if (windowDimensions.width <= 1024 && windowDimensions.width > 768) {
-      imageMargin = 5;
-      imageSize = 150;
-      imageSizeEnlarged = 250;
-    } else if (windowDimensions.width <= 768 && windowDimensions.width > 450) {
-      imageMargin = 5;
-      imageSize = 110;
-      imageSizeEnlarged = 160;
-    } else if (windowDimensions.width <= 450) {
-      imageMargin = 5;
-      imageSize = 90;
-      imageSizeEnlarged = 130;
-    }
-    if (windowDimensions.width > 450) {
-      carouselWidth = imageSize * 5 + imageMargin * 10 + imageSizeEnlarged - imageSize;
-      carouselCenter = -activeModel * (imageSize + imageMargin * 2) - imageSize - imageMargin * 2;
-    } else if (windowDimensions.width <= 450) {
-      carouselWidth = imageSize * 3 + imageMargin * 6 + imageSizeEnlarged - imageSize;
-      carouselCenter = (-activeModel - 1) * (imageSize + imageMargin * 2) - imageSize - imageMargin * 2;
-    }
+  let imageMargin, imageSize, imageSizeEnlarged, carouselWidth, carouselCenter;
+  ({ imageMargin, imageSize, imageSizeEnlarged, carouselWidth, carouselCenter } = getImageSize(activeModel, windowDimensions));
+
+  const createModelsDisplayArray = () => {
+    const modelsDisplayMiddle = modelLinks.map((model, index) => index);
+    const modelsDisplayStart = modelsDisplayMiddle.filter((model, index) => index > modelsCount - 5);
+    const modelsDisplayEnd = modelsDisplayMiddle.filter((model, index) => index < 2);
+    let modelsDisplayArray = [...modelsDisplayStart, ...modelsDisplayMiddle, ...modelsDisplayEnd];
+    return modelsDisplayArray;
   };
 
-  setImageSize();
-
-  const modelsDisplayMiddle = modelLinks.map((model, index) => index);
-  const modelsDisplayStart = modelsDisplayMiddle.filter((model, index) => index > modelsCount - 5);
-  const modelsDisplayEnd = modelsDisplayMiddle.filter((model, index) => index < 2);
-  const modelsDisplayArray = [...modelsDisplayStart, ...modelsDisplayMiddle, ...modelsDisplayEnd];
+  let modelsDisplayArray = createModelsDisplayArray();
 
   useEffect(() => {
     const carouselTimer = setTimeout(function () {
@@ -88,19 +64,21 @@ function ModelsCarousel(props) {
   };
 
   return (
-    <div className="models-carousel-wrapper" key={windowDimensions.width}>
+    <div className="models-carousel-wrapper">
       <div className="description">
         <div className="title">
           <div className="logo"></div>
           <div className="text">DUONOS KELIAS</div>
         </div>
         <p>
-          Sveiki atvykę į virtualią Jurgio Kazlausko (1914–1987 m.) medžio drožinių galeriją, kurioje išvysite net 15 į trimatę erdvę
-          perkeltų kūrinių. Kaip juos apžiūrėti? Tiesiog pasirinkite patikusį drožinį, spustelėkite ant jo ir atsivėrusiame lange apžvelkite
-          jį iš visų pusių.
+          Sveiki atvykę į virtualią Jurgio Kazlausko <span>(1914–1987)</span> medžio drožinių galeriją, kurioje išvysite net 15 į trimatę
+          erdvę perkeltų kūrinių.
         </p>
-        <p>P.S. pilną kolekciją galite išvysti atvykę į Arklio muziejų Niūronyse (Anykščių r.). </p>
-        <p>Lauksime atvykstant!</p>
+        <p>
+          Kaip juos apžiūrėti? Tiesiog pasirinkite patikusį drožinį, spustelėkite ant jo ir atsivėrusiame lange apžvelkite jį iš visų pusių.
+        </p>
+        <p className="desktop-text">PS. Visą drožinių kolekciją galėsite pamatyti, atvykę į Arklio muziejų Niūronyse (Anykščių r.). </p>
+        <p className="desktop-text">Iki susitikimo!</p>
       </div>
       <div className="carousel-container">
         <div className="side-images-container">
@@ -147,6 +125,10 @@ function ModelsCarousel(props) {
             <div className="btn btn-next" onClick={() => buttonCarouselClicked(-1)}></div>
           </div>
         </div>
+      </div>
+      <div className="mobile-text">
+        <p>PS. Visą drožinių kolekciją galėsite pamatyti, atvykę į Arklio muziejų Niūronyse (Anykščių r.). </p>
+        <p>Iki susitikimo!</p>
       </div>
     </div>
   );

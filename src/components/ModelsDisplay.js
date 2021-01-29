@@ -56,8 +56,8 @@ function ModelsDisplay(props) {
               className="model-iframe"
               allowFullScreen
               webkitallowfullscreen="true"
-              width="640"
-              height="480"
+              width="100%"
+              height="100%"
               frameBorder="0"
               seamless
               title="3d model display"

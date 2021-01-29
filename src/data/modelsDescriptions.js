@@ -8,7 +8,7 @@ Pusryčius atneša“
 `
   ],
   [`Tau pusrytėlius nešu, artojau.`, ``],
-  [`Akė`, ``],
+  [`Akėja`, ``],
   [`Sėja. Biržija.`, ``],
   [`Rugius pjauna.`, ``],
   [`Rugius riša`, ``],
